@@ -248,11 +248,9 @@ func (a *Auth) OAuth2Flow(username string) (string, error) {
 		return "", xurlErrors.NewAuthError("ListenerError", err)
 	}
 
-	err = openBrowserFunc(authURL)
-	if err != nil {
-		fmt.Println("Failed to open browser automatically. Please visit this URL manually:")
-		fmt.Println(authURL)
-	}
+	fmt.Println("Visit this URL to authenticate:")
+	fmt.Println(authURL)
+	_ = openBrowserFunc(authURL)
 
 	var code string
 	select {
